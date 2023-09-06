@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            margin: 0 !important;
+        }
+        .block {
+            position:absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flexbox
+        }
+
+        .buttonDiv {
+            position: inherit;
+            z-index: 1;
+            border-radius: 40px;
+            gap: 15px;
+        }
+
+        #picture {
+            position: inherit;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            
+        }
+        button {
+            border-radius: 40px;
+            border: none;
+            z-index: 2;
+            cursor: pointer;
+            color: #FFFFFF;
+            height: 41px;
+            width: 41px
+        }
+
+        .textA {
+            display: none;
+            cursor: pointer;
+            color: #FFFFFF;
+            font-family: arial;
+            font-size: 14px;
+            padding: 11px 15px 11px 0
+        }
+
+        .greenButton {
+            background-color: rgba(106, 191, 75, 0.0)
+        }
+        .blueButton {
+            background-color: rgba(56, 119, 238, 0.0);
+        }
+
+        
+        .blueDiv {
+            background-color: rgba(56, 119, 238, 0.7);
+        }
+            .blueDiv:hover {
+                background-color: cornflowerblue
+            }
+                .blueDiv:hover .blueButton {
+                    background-color: cornflowerblue
+                }
+        .greenDiv {
+            background-color: rgba(106, 191, 75, 0.7)
+        }
+
+            .greenDiv:hover {
+                background-color: lawngreen
+            }
+
+                .greenDiv:hover .greenButton {
+                    background-color: lawngreen
+                }
+
+        .hotelDiv {
+            left: 36vw;
+            top: 24vh;
+        }
+        .pierDiv {
+            left: 31vw;
+            top: 51.5vh
+        }
+        .terminalDiv {
+            left: 40vw;
+            top: 36vh
+        }
+        .railwayDiv{
+            left: 55.7vw;
+            top: 31.8vh
+        }
+        .complexDiv {
+            left: 64vw;
+            top: 18vh
+        }
+        .controlDiv {
+            left: 65.5vw;
+            top: 36vh
+        }
+        .undergroundDiv {
+            left: 54vw;
+            top: 46vh
+        }
+        .relaxDiv {
+            left: 54.5vw;
+            top: 56.5vh
+        }
+
+        .officeDiv {
+            left: 62vw;
+            top: 48vh
+        }
+        .computerDiv {
+            left: 82.8vw;
+            top: 56.2vh
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block" id="block">
+        <div class="hotelDiv buttonDiv blueDiv">
+            <button id="hotel" class="blueButton">
+                <img id="hotelImg" src="/plus" />
+            </button>
+            <a id="hotelA" class="textA">Гостиница </a>
+        </div>
+
+        <div class="pierDiv buttonDiv blueDiv">
+            <button id="pierl"  class="blueButton">
+                <img id="pierlImg"  src="/plus" />
+            </button>
+            <a id="pierlA" class="textA">Пирс</a>
+        </div>
+
+        <div class="terminalDiv buttonDiv greenDiv">
+            <button id="terminal" class="greenButton">
+                <img id="terminalImg" src="/plus" />
+            </button>
+            <a id="terminalA" class="textA">Терминал</a>
+        </div>
+
+        <div class="railwayDiv buttonDiv greenDiv">
+            <button id="railway" class="greenButton">
+                <img id="railwayImg" src="/plus" />
+            </button>
+            <a id="railwayA" class="textA">Вокзал</a>
+        </div>
+
+        <div class="complexDiv buttonDiv blueDiv">
+            <button id="complex" class="blueButton">
+                <img id="complexImg" src="/plus" />
+            </button>
+            <a id="complexA" class="textA">Жилой комплекс</a>
+        </div>
+
+
+        <div class="controlDiv buttonDiv blueDiv">
+            <button id="control" class="blueButton">
+                <img id="controlImg" src="/plus" />
+            </button>
+            <a id="controlA" class="textA">Диспетчерская</a>
+        </div>
+
+        <div class="undergroundDiv buttonDiv blueDiv">
+            <button id="underground" class="blueButton">
+                <img id="undergroundImg" src="/plus" />
+            </button>
+            <a id="undergroundA" class="textA">Станция метро</a>
+        </div>
+
+        <div class="relaxDiv buttonDiv greenDiv">
+            <button id="relax" class="greenButton">
+                <img id="relaxImg" src="/plus" />
+            </button>
+            <a id="relaxA" class="textA">Центр отдыха</a>
+        </div>
+
+        <div class="officeDiv buttonDiv greenDiv">
+            <button id="office" class="greenButton">
+                <img id="officeImg" src="/plus" />
+            </button>
+            <a id="officeA" class="textA">Офис</a>
+        </div>
+
+        <div class="computerDiv buttonDiv blueDiv">
+            <button id="computer" class="blueButton">
+                <img id="computerImg" src="/plus" />
+            </button>
+            <a id="computerA" class="textA">Вычислительный центр</a>
+        </div>
+
+        <img id='picture' cover src="/picture" />
+
+    </div>
+    <script>
+        var request = new XMLHttpRequest();
+        request.open('GET', '/picture', true)
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.setRequestHeader("charset", "utf-8");
+        request.send();
+
+        const buttonGroup = document.getElementById("block");
+        const buttonGroupPressed = e => {
+            const isButton = e.target.nodeName === 'BUTTON';
+            const isA = e.target.nodeName === 'A';
+            const isImg = e.target.nodeName === 'IMG';
+            if (!isButton && !isA && !isImg) {
+                return
+            }
+            if (isButton == true) {
+                var aId = String(e.target.id + 'A')
+                var imgId = String(e.target.id + 'Img')
+            } else if (isImg == true) {
+                var aId = String((e.target.id.slice(0, -3)) + 'A')
+                var imgId = e.target.id
+            } else {
+                var aId = e.target.id
+                var imgId = String((e.target.id.slice(0, -1)) + 'Img')
+            }
+            
+            var displayStatus = document.getElementById(aId).style['display']
+            if (displayStatus == 'none' || displayStatus == '') {
+                document.getElementById(aId).style['display'] = 'inline-block'
+                document.getElementById(imgId).src = '/minus'
+                document.getElementById(imgId).style['margin-bottom'] = '12%'
+            } else {
+ 
+                document.getElementById(aId).style['display'] = 'none'
+                document.getElementById(imgId).src = '/plus';
+                document.getElementById(imgId).style['margin-bottom'] = '0'
+            }
+        }
+        buttonGroup.addEventListener("click", buttonGroupPressed);
+
+    </script>
+</body>
+</html>
